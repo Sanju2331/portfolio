@@ -1,0 +1,6 @@
+{
+  "name": "Srikonda Sanjay Portfolio",
+  "description": "An enhanced personal portfolio and interactive AI Recruiter double assistant highlighting React, PHP, and MySQL skills for Srikonda Sanjay.",
+  "requestFramePermissions": [],
+  "majorCapabilities": ["MAJOR_CAPABILITY_SERVER_SIDE_GEMINI_API"]
+}

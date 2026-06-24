@@ -1,0 +1,127 @@
+@import url('https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@300;400;500;600;700;800;900&family=Outfit:wght@300;400;500;600;700;800;900&family=Syne:wght@400;500;600;700;800&family=JetBrains+Mono:wght@400;500;600;700&display=swap');
+@import "tailwindcss";
+
+@theme {
+  --font-sans: "Inter", system-ui, -apple-system, sans-serif;
+  --font-display: "Outfit", "Plus Jakarta Sans", sans-serif;
+  --font-serif: "Playfair Display", serif;
+  --font-ui: "Syne", "Inter", sans-serif;
+  --font-mono: "JetBrains Mono", monospace;
+
+  /* Color definitions */
+  --color-brand-primary: #f43f5e; /* Rose 500 */
+  --color-brand-accent: #3b82f6;  /* Blue 500 */
+  --color-brand-teal: #14b8a6;    /* Teal 550 */
+  --color-canvas-dark: #070709;
+  --color-canvas-light: #f8fafc;
+}
+
+/* Custom Base layer improvements */
+@layer base {
+  body {
+    font-family: var(--font-sans);
+    background-color: var(--color-canvas-dark);
+    color: #f1f5f9;
+    letter-spacing: -0.011em;
+  }
+}
+
+/* Glassmorphic variables & frames */
+.glass-panel {
+  background: rgba(15, 15, 25, 0.65);
+  backdrop-filter: blur(24px);
+  border: 1px solid rgba(255, 255, 255, 0.08);
+}
+
+.glass-panel-light {
+  background: rgba(255, 255, 255, 0.75);
+  backdrop-filter: blur(24px);
+  border: 1px solid rgba(15, 23, 42, 0.08);
+}
+
+/* Ambient glow blobs */
+.glow-spot-1 {
+  background: radial-gradient(circle, rgba(244, 63, 94, 0.15) 0%, rgba(244, 63, 94, 0) 70%);
+}
+
+.glow-spot-2 {
+  background: radial-gradient(circle, rgba(59, 130, 246, 0.12) 0%, rgba(59, 130, 246, 0) 70%);
+}
+
+/* Custom Hide Scrollbar */
+.no-scrollbar::-webkit-scrollbar {
+  display: none;
+}
+.no-scrollbar {
+  -ms-overflow-style: none;
+  scrollbar-width: none;
+}
+
+/* Profile Photo Special Effects */
+.photo-frame {
+  position: relative;
+  overflow: hidden;
+  border-radius: 2rem;
+  transition: all 0.5s cubic-bezier(0.2, 1, 0.3, 1);
+  box-shadow: 0 20px 40px rgba(0,0,0,0.4), 0 0 0 1px rgba(255,255,255,0.08);
+}
+
+.photo-frame::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  z-index: 10;
+  background: linear-gradient(
+    135deg,
+    rgba(255, 255, 255, 0.15) 0%,
+    rgba(255, 255, 255, 0) 50%,
+    rgba(0, 0, 0, 0.2) 100%
+  );
+  pointer-events: none;
+  transition: opacity 0.5s ease;
+}
+
+/* Metallic Scan Line effect */
+.photo-frame::after {
+  content: '';
+  position: absolute;
+  top: -50%;
+  left: -60%;
+  width: 40%;
+  height: 200%;
+  background: linear-gradient(
+    to right,
+    rgba(255, 255, 255, 0) 0%,
+    rgba(255, 255, 255, 0.2) 30%,
+    rgba(255, 255, 255, 0.4) 50%,
+    rgba(255, 255, 255, 0.2) 70%,
+    rgba(255, 255, 255, 0) 100%
+  );
+  transform: rotate(30deg);
+  pointer-events: none;
+  z-index: 12;
+  transition: transform 0.8s ease-in-out;
+}
+
+.photo-frame:hover {
+  transform: scale(1.03) rotate(-1deg);
+  box-shadow: 
+    0 30px 60px rgba(244, 63, 94, 0.2), 
+    0 0 40px rgba(59, 130, 246, 0.15),
+    0 0 0 2px rgba(244, 63, 94, 0.4);
+}
+
+.photo-frame:hover::after {
+  transform: translate(450%, 0) rotate(30deg);
+}
+
+/* Custom typing cursor */
+.typing-cursor::after {
+  content: '|';
+  animation: blink 1s step-end infinite;
+}
+
+@keyframes blink {
+  from, to { color: transparent }
+  50% { color: var(--color-brand-primary) }
+}
