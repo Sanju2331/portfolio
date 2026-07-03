@@ -1,12 +1,14 @@
 import React, { useRef, useState } from "react";
 import { Sparkles, Award } from "lucide-react";
-import { motion } from "motion/react";
 
 export function SanjayPhoto() {
   const cardRef = useRef<HTMLDivElement>(null);
   const [rotateX, setRotateX] = useState(0);
   const [rotateY, setRotateY] = useState(0);
   const [isHovered, setIsHovered] = useState(false);
+  
+  // 🔹 Using public folder
+  const imgUrl = "/images/sanjay.png";
 
   const handleMouseMove = (e: React.MouseEvent<HTMLDivElement>) => {
     if (!cardRef.current) return;
@@ -14,11 +16,9 @@ export function SanjayPhoto() {
     const width = rect.width;
     const height = rect.height;
     
-    // Position pointer relative to target element
     const mouseX = e.clientX - rect.left;
     const mouseY = e.clientY - rect.top;
     
-    // Standard relative tilt offset multiplier (maximum of 12 degrees)
     const degX = -((mouseY - height / 2) / (height / 2)) * 12;
     const degY = ((mouseX - width / 2) / (width / 2)) * 12;
     
@@ -38,16 +38,14 @@ export function SanjayPhoto() {
 
   return (
     <div className="relative flex flex-col items-center justify-center">
-      {/* Background radial soft ambient glow */}
       <div className="absolute w-[360px] h-[360px] bg-rose-500/10 rounded-full blur-3xl pointer-events-none -translate-x-4 -translate-y-4" />
 
-      {/* Styled 3D Perspective Card Wrapper */}
       <div 
         ref={cardRef}
         onMouseMove={handleMouseMove}
         onMouseEnter={handleMouseEnter}
         onMouseLeave={handleMouseLeave}
-        className="photo-frame w-72 h-88 md:w-80 md:h-96 relative group cursor-pointer overflow-hidden bg-slate-900 border border-white/10 shadow-2xl transition-all duration-200 ease-out"
+        className="relative w-72 h-88 md:w-80 md:h-96 group cursor-pointer overflow-hidden bg-slate-900 border border-white/10 shadow-2xl transition-all duration-200 ease-out rounded-2xl"
         style={{
           perspective: "1000px",
           transformStyle: "preserve-3d",
@@ -57,15 +55,12 @@ export function SanjayPhoto() {
             : "0 20px 25px -5px rgba(0, 0, 0, 0.5)",
         }}
       >
-        {/* Falling source image with non-referrer tags */}
         <img
-          src="images/sanjay.png"
+          src={imgUrl}
           alt="Srikonda Sanjay - Web Developer Portrait"
           className="w-full h-full object-cover transition-transform duration-700 ease-out group-hover:brightness-105"
-          referrerPolicy="no-referrer"
         />
 
-        {/* 3D Depth layered spotlight gleam accent */}
         <div 
           className="absolute inset-0 bg-white/10 opacity-0 group-hover:opacity-100 pointer-events-none transition-opacity duration-300 z-15"
           style={{
@@ -74,16 +69,13 @@ export function SanjayPhoto() {
           }}
         />
 
-        {/* Ambient color dynamic filter on hover */}
         <div className="absolute inset-0 bg-gradient-to-t from-slate-950 via-slate-950/20 to-transparent opacity-85 group-hover:opacity-60 transition-opacity duration-500 z-10" />
 
-        {/* Visual corner decorations for UI/UX look */}
         <div className="absolute top-4 left-4 w-3.5 h-3.5 border-t-2 border-l-2 border-rose-500/60 z-20 transition group-hover:border-rose-400 group-hover:scale-110" />
         <div className="absolute top-4 right-4 w-3.5 h-3.5 border-t-2 border-r-2 border-rose-500/60 z-20 transition group-hover:border-rose-400 group-hover:scale-110" />
         <div className="absolute bottom-4 left-4 w-3.5 h-3.5 border-b-2 border-l-2 border-rose-500/60 z-20 transition group-hover:border-rose-400 group-hover:scale-110" />
         <div className="absolute bottom-4 right-4 w-3.5 h-3.5 border-b-2 border-r-2 border-rose-500/60 z-20 transition group-hover:border-rose-400 group-hover:scale-110" />
 
-        {/* Floating tech badge on image */}
         <div 
           className="absolute top-4 left-6 right-6 flex justify-between items-center z-25 pointer-events-none transition-transform duration-300"
           style={{ transform: "translateZ(30px)" }}
@@ -97,7 +89,6 @@ export function SanjayPhoto() {
           </span>
         </div>
 
-        {/* Hover-triggered overlay content info */}
         <div 
           className="absolute bottom-6 left-6 right-6 z-25 transition-transform duration-500"
           style={{ transform: "translateZ(40px)" }}
@@ -112,9 +103,8 @@ export function SanjayPhoto() {
         </div>
       </div>
 
-      {/* Styled bottom subtitle */}
       <p className="text-[11px] font-mono text-slate-400 uppercase tracking-widest mt-6 text-center select-none">
-        ← Smooth Interactive 3D Perspective Tilt →
+        ← Hover for 3D Perspective Tilt →
       </p>
     </div>
   );

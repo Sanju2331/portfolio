@@ -22,7 +22,7 @@ export function SanjayExperience({ themeMode }: { themeMode: "dark" | "light" })
       {/* Visual Section Banner Header */}
       <div className="relative h-44 sm:h-56 rounded-3xl overflow-hidden border border-white/5 select-none shadow-xl">
         <img
-          src="https://images.unsplash.com/photo-1531403009284-440f080d1e12?auto=format&fit=crop&q=80&w=800"
+          src="images/experience.png"
           alt="Professional Experience MediaWagon"
           className="absolute inset-0 w-full h-full object-cover filter brightness-[0.65] saturate-[0.8] hover:scale-105 transition-transform duration-700"
           referrerPolicy="no-referrer"
